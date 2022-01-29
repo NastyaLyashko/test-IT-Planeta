@@ -10,7 +10,6 @@ function Input({ label, type, name, onChange }) {
     function handleChange (e) {
         setValue(e.target.value);
         onChange(e);
-        
     }
 
     useEffect(() => {

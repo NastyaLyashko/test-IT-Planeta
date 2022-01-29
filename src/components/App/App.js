@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, withRouter, useHistory } from 'react-router-dom';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 import './App.css';
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
   const [isInputsValid, setIsInputsValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+  console.log('инпуты '+ isInputsValid)
+  console.log('форма' + isFormValid) 
+  console.log('пароли' + isPasswordValid) 
 
   function handleChangeData(e) {
     const {name, value} = e.target
@@ -24,6 +28,19 @@ function App() {
     setIsInputsValid(e.target.closest("form").checkValidity());
   }
 
+  const [checkboxData, setCheckboxData] = useState({
+    mailing: false,
+    agreement: false,
+});
+
+function handleChangeCheckbox(e) {
+    const {name, checked} = e.target
+    setCheckboxData({
+        ...checkboxData,
+        [name]: checked,
+    });
+}
+
   useEffect(() => {
     if ((data.password !== '') && (data.repeatPassword !== '') && (data.password === data.repeatPassword)) {
       setIsPasswordValid(true)
@@ -33,12 +50,12 @@ function App() {
   }, [data])
 
   useEffect(() => {
-    if (isInputsValid && isPasswordValid) {
+    if (isInputsValid && isPasswordValid && checkboxData.mailing && checkboxData.agreement) {
       setIsFormValid(true)
     } else {
       setIsFormValid(false)
     }
-  }, [isInputsValid, isPasswordValid])
+  }, [isInputsValid, isPasswordValid, checkboxData])
 
 
 
@@ -46,9 +63,11 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/signup">
-          <Register onChange={handleChangeData} isFormValid={isFormValid} />
+          <Register onChange={handleChangeData} isFormValid={isFormValid} changeCheckbox={handleChangeCheckbox} />
         </Route>
-
+        <Route path="/signin">
+          <Login />
+        </Route>
       </Switch>
       
     </div>

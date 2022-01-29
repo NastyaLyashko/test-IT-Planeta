@@ -29,7 +29,7 @@
     padding: 30px;
     width: 100%;
     max-width: 476px;
-    height: 515px;
+    max-height: 515px;
     border: 1px solid #E0E0E0;
     border-radius: 10px;
 }

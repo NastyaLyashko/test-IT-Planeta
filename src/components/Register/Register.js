@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import Input from '../Input/Input';
 import './Register.css';
 
-function Register ({ onChange, isFormValid }) {
+function Register ({ onChange, isFormValid, changeCheckbox }) {
+
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -22,12 +23,20 @@ function Register ({ onChange, isFormValid }) {
                 <button type="submit" className={`${isFormValid? "form__button_active" : "form__button_inactive"} form__button` } disabled={`${isFormValid ? "" : "disabled"}`}>Регистрация</button>
                 <label className='form__checkbox'>
                     <input  type='checkbox'
-                            className='form__checkbox-input'/>
+                            name='mailing'
+                            value='true'
+                            className='form__checkbox-input'
+                            onChange={changeCheckbox}
+                            required />
                     <span className='form__checkbox-text'>Соглашаюсь на получение рассылки по электронной почте</span>
                 </label>
                 <label className='form__checkbox'>
                     <input  type='checkbox'
-                            className='form__checkbox-input'/>
+                            name='agreement'
+                            value='true'
+                            className='form__checkbox-input'
+                            onChange={changeCheckbox}
+                            required />
                     <span className='form__checkbox-text'>Соглашаюсь с <Link to="#" className='form__checkbox-link'>политикой обработки персональных данных</Link></span>
                 </label>
             </form>
