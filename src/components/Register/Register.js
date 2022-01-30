@@ -23,7 +23,7 @@ function Register () {
                 <Input onChange={formValidation.handleChangeData} label={'E-mail'} type={'email'} name={'email'} />
                 <Input onChange={formValidation.handleChangeData} label={'Пароль'} type={'password'} name={'password'} />
                 <Input onChange={formValidation.handleChangeData} label={'Повторите пароль'} type={'password'} name={'repeatPassword'} />
-                <button type="submit" className={`${formValidation.isFormValid? "form__button_active" : "form__button_inactive"} form__button` } disabled={`${formValidation.isFormValid ? "" : "disabled"}`}>Регистрация</button>
+                <button type="submit" className={`${formValidation.isFormRegValid? "form__button_active" : "form__button_inactive"} form__button` } disabled={`${formValidation.isFormRegValid ? "" : "disabled"}`}>Регистрация</button>
                 <label className='form__checkbox'>
                     <input  type='checkbox'
                             name='mailing'

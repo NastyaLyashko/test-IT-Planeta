@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useFormWithValidation } from '../Validation/Validation';
 import './Input.css';
 
 function Input({ label, type, name, onChange }) {
-
-    const formValidation = useFormWithValidation();
 
     const [isActive, setIsActive] = useState(false);
 

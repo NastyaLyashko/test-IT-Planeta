@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Input from '../Input/Input';
+import { useFormWithValidation } from '../Validation/Validation';
 import './Login.css';
 
-function Login ({ onChange, isFormValid }) {
+function Login () {
+
+    const formValidation = useFormWithValidation();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -16,9 +19,9 @@ function Login ({ onChange, isFormValid }) {
                     <h3 className="form__title">Войти</h3>
                     <Link to="/signup" className="form__title">Регистрация</Link> 
                 </div>
-                <Input onChange={onChange} label={'E-mail'} type={'email'} name={'email'} />
-                <Input onChange={onChange} label={'Пароль'} type={'password'} name={'password'} />
-                <button type="submit" className={`${isFormValid? "form__button_active" : "form__button_inactive"} form__button` } disabled={`${isFormValid ? "" : "disabled"}`}>Войти</button>
+                <Input onChange={formValidation.handleChangeData}  label={'E-mail'} type={'email'} name={'email'} />
+                <Input onChange={formValidation.handleChangeData}  label={'Пароль'} type={'password'} name={'password'} />
+                <button type="submit" className={`${formValidation.isFormLoginValid? "form__button_active" : "form__button_inactive"} form__button` } disabled={`${formValidation.isFormLoginValid ? "" : "disabled"}`}>Войти</button>
             </form>
         </section>
     )

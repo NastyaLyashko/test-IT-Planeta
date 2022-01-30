@@ -6,12 +6,8 @@ export function useFormWithValidation() {
 
   const [isInputsValid, setIsInputsValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
-
-  console.log('data ' + data)
-  console.log('inputs ' + isInputsValid)
-  console.log('passwords ' + isPasswordValid)
-  console.log('form ' + isFormValid)
+  const [isFormRegValid, setIsFormRegValid] = useState(false);
+  const [isFormLoginValid, setIsFormLoginValid] = useState(false);
 
   function handleChangeData (e) {
     const {name, value} = e.target
@@ -43,11 +39,18 @@ const handleChangeCheckbox = (e) => {
 
   useEffect(() => {
     if (isInputsValid && isPasswordValid && checkboxData.mailing && checkboxData.agreement) {
-      setIsFormValid(true)
+      setIsFormRegValid(true)
     } else {
-      setIsFormValid(false)
+      setIsFormRegValid(false)
     }
   }, [isInputsValid, isPasswordValid, checkboxData])
 
-  return { handleChangeData, handleChangeCheckbox, isFormValid, data, checkboxData };
+  useEffect(() => {
+    if (isInputsValid) {
+      setIsFormLoginValid(true)
+    } else {
+      setIsFormLoginValid(false)
+    }
+  }, [isInputsValid, isPasswordValid, checkboxData])
+  return { handleChangeData, handleChangeCheckbox, isFormRegValid, isFormLoginValid, data, checkboxData };
 }
